@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>보고사진관 | 졸업앨범 전문 · 종로 40년</title>
+  <meta name="description" content="종로에서 40년, 졸업앨범 전문 보고사진관. 웨딩·프로필·여권·증명사진, 전국 출장 촬영.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #16151a;
+      --bg-soft: #1f1d23;
+      --line: #34313a;
+      --text: #f2ede3;
+      --text-dim: #a8a196;
+      --gold: #c8a96a;
+      --gold-strong: #dcbf82;
+      --serif: "Noto Serif KR", serif;
+      --sans: "Noto Sans KR", sans-serif;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.35; }
+
+    /* 헤더 */
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(22, 21, 26, .92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; letter-spacing: .08em; }
+    .logo span { color: var(--gold); }
+    .menu { display: flex; gap: 32px; font-size: .92rem; color: var(--text-dim); }
+    .menu a:hover { color: var(--gold); }
+
+    /* 버튼 */
+    .btn {
+      display: inline-block; padding: 14px 28px;
+      font-size: .95rem; font-weight: 500; letter-spacing: .02em;
+      border: 1px solid var(--gold); transition: .25s;
+      cursor: pointer; font-family: var(--sans);
+    }
+    .btn-gold { background: var(--gold); color: var(--bg); }
+    .btn-gold:hover { background: var(--gold-strong); border-color: var(--gold-strong); }
+    .btn-line { background: transparent; color: var(--gold); }
+    .btn-line:hover { background: rgba(200, 169, 106, .1); }
+
+    /* 첫 화면 */
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: flex; align-items: center;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(200, 169, 106, .10), transparent 60%),
+        var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { color: var(--gold); font-size: .85rem; letter-spacing: .3em; margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: 24px; }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 540px; margin-bottom: 40px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* 섹션 공통 */
+    section { padding: 112px 0; border-bottom: 1px solid var(--line); }
+    .sec-head { margin-bottom: 56px; }
+    .sec-head .eyebrow { margin-bottom: 12px; }
+    .sec-head h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); }
+    .sec-head p { color: var(--text-dim); margin-top: 12px; }
+
+    /* 실적 */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .stat { background: var(--bg); padding: 48px 24px; text-align: center; }
+    .stat strong { display: block; font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.4rem); color: var(--gold); font-weight: 700; line-height: 1.1; }
+    .stat span { color: var(--text-dim); font-size: .95rem; }
+
+    /* 갤러리 (사진 자리) */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .gallery.main .ph:first-child { grid-column: span 2; grid-row: span 2; }
+    .ph {
+      position: relative; aspect-ratio: 4 / 5;
+      background: linear-gradient(160deg, #2a2730, #1b1a1f);
+      border: 1px solid var(--line);
+      display: flex; align-items: flex-end; padding: 20px;
+      overflow: hidden;
+    }
+    .gallery.main .ph:first-child { aspect-ratio: auto; }
+    .ph::before {
+      content: ""; position: absolute; inset: 14px;
+      border: 1px solid rgba(200, 169, 106, .25);
+      pointer-events: none;
+    }
+    .ph span { position: relative; font-size: .85rem; color: var(--text-dim); letter-spacing: .05em; }
+    .ph span b { display: block; font-family: var(--serif); font-weight: 600; color: var(--text); font-size: 1.05rem; }
+
+    /* 진행 과정 */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; counter-reset: step; }
+    .step { border-top: 1px solid var(--gold); padding-top: 20px; }
+    .step::before { counter-increment: step; content: "0" counter(step); font-family: var(--serif); color: var(--gold); font-size: .9rem; }
+    .step h3 { font-size: 1.15rem; margin: 6px 0 8px; }
+    .step p { color: var(--text-dim); font-size: .92rem; }
+
+    /* 강점 카드 */
+    .reasons { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .reason { background: var(--bg-soft); border: 1px solid var(--line); padding: 32px 22px; }
+    .reason i { font-style: normal; font-family: var(--serif); color: var(--gold); font-size: 1.6rem; }
+    .reason h3 { font-size: 1.05rem; margin: 14px 0 10px; }
+    .reason p { color: var(--text-dim); font-size: .9rem; }
+
+    /* 그 밖의 촬영 */
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .service .ph { aspect-ratio: 3 / 4; margin-bottom: 18px; }
+    .service h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .service p { color: var(--text-dim); font-size: .92rem; }
+    .center { text-align: center; margin-top: 56px; }
+
+    /* 스튜디오 */
+    .studio { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .studio .ph { aspect-ratio: 4 / 3; }
+    .studio p { color: var(--text-dim); margin-bottom: 16px; }
+
+    /* 견적 요청 */
+    .quote { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; }
+    .quote-info p { color: var(--text-dim); margin-bottom: 24px; }
+    form { display: grid; gap: 16px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { display: block; font-size: .85rem; color: var(--text-dim); margin-bottom: 6px; }
+    input, textarea {
+      width: 100%; padding: 14px 16px;
+      background: var(--bg-soft); color: var(--text);
+      border: 1px solid var(--line); font: inherit; font-size: .95rem;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--gold); }
+    textarea { min-height: 130px; resize: vertical; }
+    .notice { display: none; padding: 14px 16px; border: 1px solid var(--gold); color: var(--gold); font-size: .92rem; }
+    .notice.show { display: block; }
+
+    /* 오시는 길 */
+    .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .visit dl { display: grid; grid-template-columns: 110px 1fr; row-gap: 14px; }
+    .visit dt { color: var(--gold); font-size: .92rem; }
+    .visit dd { color: var(--text-dim); }
+    .map {
+      aspect-ratio: 4 / 3; border: 1px solid var(--line); background: var(--bg-soft);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-dim); font-size: .9rem;
+    }
+
+    footer { padding: 40px 0 120px; color: var(--text-dim); font-size: .85rem; text-align: center; }
+    footer .logo { display: block; margin-bottom: 8px; color: var(--text); }
+
+    /* 모바일 하단 고정 버튼 */
+    .mobile-cta { display: none; }
+
+    /* 천천히 나타나기 */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 1s ease, transform 1s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    @media (max-width: 960px) {
+      .reasons { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .studio, .quote, .visit { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 720px) {
+      .wrap { padding: 0 16px; }
+      .menu { display: none; }
+      section { padding: 80px 0; }
+      .stats { grid-template-columns: 1fr; }
+      .gallery, .services { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .gallery.main .ph:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
+      .reasons { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr; }
+      .services .service:last-child { grid-column: span 2; }
+      .mobile-cta {
+        display: grid; grid-template-columns: 1fr 1fr;
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+        border-top: 1px solid var(--line);
+      }
+      .mobile-cta a { padding: 16px 8px; text-align: center; font-weight: 500; font-size: .95rem; }
+      .mobile-cta a:first-child { background: var(--gold); color: var(--bg); }
+      .mobile-cta a:last-child { background: var(--bg-soft); color: var(--gold); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="logo">보고<span>사진관</span></a>
+      <nav class="menu">
+        <a href="#album">졸업앨범</a>
+        <a href="#why">보고사진관</a>
+        <a href="#other">그 밖의 촬영</a>
+        <a href="#studio">스튜디오</a>
+        <a href="#visit">오시는 길</a>
+      </nav>
+      <a href="#quote" class="btn btn-gold" style="padding:10px 18px;font-size:.88rem">견적 받기</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 첫 화면 -->
+    <div class="hero">
+      <div class="wrap">
+        <p class="eyebrow reveal">SINCE 40 YEARS · JONGNO</p>
+        <h1 class="reveal">졸업앨범 전문<br><em>보고사진관</em></h1>
+        <p class="reveal">종로에서 40년, 학교의 가장 소중한 한 해를 기록해 왔습니다.<br>
+          웨딩·프로필·여권·증명사진까지, 전국 어디든 찾아갑니다.</p>
+        <div class="hero-actions reveal">
+          <a href="#quote" class="btn btn-gold">졸업앨범 견적 받기</a>
+          <!-- TODO: 카카오톡 채널 주소가 정해지면 href를 바꿔 주세요 -->
+          <a href="#kakao" class="btn btn-line">카카오톡으로 상담하기</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 실적 -->
+    <section>
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stat"><strong>40년</strong><span>종로에서 이어 온 경력</span></div>
+          <div class="stat"><strong>졸업앨범</strong><span>초·중·고·대학원 전문</span></div>
+          <div class="stat"><strong>전국</strong><span>어디든 출장 촬영</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 졸업앨범 -->
+    <section id="album">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">GRADUATION ALBUM</p>
+          <h2>졸업앨범</h2>
+          <p>학생 한 명 한 명의 얼굴과 학교의 한 해를 정성껏 담습니다.</p>
+        </div>
+        <!-- TODO: 사진 자리(.ph)를 실제 대표 작업 사진으로 바꿔 주세요 -->
+        <div class="gallery main reveal">
+          <div class="ph"><span><b>단체 사진</b>대표 작업 사진 자리</span></div>
+          <div class="ph"><span><b>개인 사진</b>대표 작업 사진 자리</span></div>
+          <div class="ph"><span><b>교정 스냅</b>대표 작업 사진 자리</span></div>
+          <div class="ph"><span><b>앨범 디자인</b>대표 작업 사진 자리</span></div>
+          <div class="ph"><span><b>행사 기록</b>대표 작업 사진 자리</span></div>
+          <div class="ph"><span><b>동아리·학급</b>대표 작업 사진 자리</span></div>
+        </div>
+
+        <div class="steps">
+          <div class="step reveal"><h3>상담</h3><p>학교 일정과 인원, 원하는 구성을 함께 정합니다.</p></div>
+          <div class="step reveal"><h3>촬영</h3><p>학교로 직접 찾아가 개인·단체·스냅을 촬영합니다.</p></div>
+          <div class="step reveal"><h3>보정</h3><p>한 장씩 자연스럽게 보정하고 앨범을 디자인합니다.</p></div>
+          <div class="step reveal"><h3>전달</h3><p>검수를 마친 앨범을 약속한 날짜에 전달합니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 보고사진관을 고르는 이유 -->
+    <section id="why">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">WHY BOGO</p>
+          <h2>보고사진관을 고르는 이유</h2>
+        </div>
+        <div class="reasons">
+          <div class="reason reveal"><i>01</i><h3>오랜 경력과 실적</h3><p>종로에서 40년, 수많은 학교의 졸업앨범을 만들어 왔습니다.</p></div>
+          <div class="reason reveal"><i>02</i><h3>자연스러운 보정</h3><p>과하지 않게, 그 사람다운 모습을 살리는 보정과 품질.</p></div>
+          <div class="reason reveal"><i>03</i><h3>합리적인 가격</h3><p>상품 구성과 가격을 숨기지 않고 투명하게 안내합니다.</p></div>
+          <div class="reason reveal"><i>04</i><h3>편안한 분위기</h3><p>친절한 응대로 처음 찍는 분도 편하게 촬영합니다.</p></div>
+          <div class="reason reveal"><i>05</i><h3>빠른 전달</h3><p>촬영부터 결과물 전달까지 약속한 일정을 지킵니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 그 밖의 촬영 -->
+    <section id="other">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">OTHER SESSIONS</p>
+          <h2>그 밖의 촬영</h2>
+          <p>40년의 손끝으로 인생의 중요한 순간도 함께 남깁니다.</p>
+        </div>
+        <div class="services">
+          <div class="service reveal">
+            <div class="ph"><span>웨딩 사진 자리</span></div>
+            <h3>웨딩사진</h3><p>두 사람의 가장 아름다운 날을 차분하고 우아하게.</p>
+          </div>
+          <div class="service reveal">
+            <div class="ph"><span>프로필 사진 자리</span></div>
+            <h3>프로필사진</h3><p>개인·비즈니스 프로필을 신뢰감 있게.</p>
+          </div>
+          <div class="service reveal">
+            <div class="ph"><span>증명 사진 자리</span></div>
+            <h3>여권·증명사진</h3><p>규격에 정확히 맞춘 깔끔한 사진.</p>
+          </div>
+        </div>
+        <!-- TODO: 상품별 가격표가 정해지면 이곳에 추가해 주세요 -->
+        <div class="center reveal">
+          <a href="#kakao" class="btn btn-line">카카오톡으로 상담하기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 스튜디오 -->
+    <section id="studio">
+      <div class="wrap studio">
+        <div class="ph reveal"><span><b>스튜디오</b>공간·장비 사진 자리</span></div>
+        <div class="reveal">
+          <p class="eyebrow">STUDIO</p>
+          <h2 style="font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:24px">종로에서 40년,<br>한자리를 지켜 왔습니다</h2>
+          <p>보고사진관은 서울 종로에서 40년 동안 졸업앨범을 만들어 온 사진관입니다.</p>
+          <p>오랜 시간 쌓아 온 경험과 장비로, 학교의 한 해부터 한 사람의 인생 사진까지 정성껏 담습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 견적 요청 -->
+    <section id="quote">
+      <div class="wrap quote">
+        <div class="quote-info reveal">
+          <p class="eyebrow">FOR SCHOOLS</p>
+          <h2 style="font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:24px">졸업앨범 견적 요청</h2>
+          <p>학교·기관 담당자님, 아래 내용을 남겨 주시면 확인 후 연락드립니다.</p>
+          <p>전국 어디든 출장 촬영이 가능합니다.</p>
+        </div>
+        <!-- TODO: 견적 양식은 아직 실제로 전송되지 않습니다. 받을 이메일이나 전송 서비스를 정하면 연결해 주세요 -->
+        <form class="reveal" id="quote-form">
+          <div class="row">
+            <div><label for="school">학교·기관 이름</label><input id="school" name="school" required></div>
+            <div><label for="name">담당자 이름</label><input id="name" name="name" required></div>
+          </div>
+          <div class="row">
+            <div><label for="phone">연락처</label><input id="phone" name="phone" type="tel" required></div>
+            <div><label for="count">졸업 예정 인원</label><input id="count" name="count" type="number" min="1"></div>
+          </div>
+          <div><label for="date">희망 촬영 시기</label><input id="date" name="date" placeholder="예: 내년 4월 중"></div>
+          <div><label for="msg">문의 내용</label><textarea id="msg" name="msg"></textarea></div>
+          <button type="submit" class="btn btn-gold">견적 요청 보내기</button>
+          <p class="notice" id="notice">견적 요청 기능을 준비하고 있습니다. 지금은 전화나 카카오톡으로 문의해 주세요.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- 오시는 길 -->
+    <section id="visit">
+      <div class="wrap visit">
+        <div class="reveal">
+          <p class="eyebrow">VISIT</p>
+          <h2 style="font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:32px">오시는 길</h2>
+          <!-- TODO: 상세 주소, 전화번호, 영업시간을 채워 주세요 -->
+          <dl>
+            <dt>주소</dt><dd>서울 종로구 종로</dd>
+            <dt>전화</dt><dd>준비 중</dd>
+            <dt>영업시간</dt><dd>준비 중</dd>
+            <dt>출장 촬영</dt><dd>전국</dd>
+          </dl>
+        </div>
+        <div class="map reveal">지도 자리</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="logo">보고사진관</span>
+    졸업앨범 전문 · 종로에서 40년
+  </footer>
+
+  <!-- 모바일 하단 고정 버튼 -->
+  <div class="mobile-cta">
+    <a href="#quote">졸업앨범 견적</a>
+    <a href="#kakao">카카오톡 상담</a>
+  </div>
+
+  <script>
+    // 천천히 나타나기
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // 카카오톡 채널 주소가 정해지기 전까지 안내
+    document.querySelectorAll('a[href="#kakao"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("카카오톡 채널을 준비하고 있습니다.");
+      });
+    });
+
+    // 견적 양식: 아직 전송 기능이 없어 안내만 보여 줌
+    document.getElementById("quote-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      document.getElementById("notice").classList.add("show");
+    });
+  </script>
+</body>
+</html>
